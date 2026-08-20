@@ -14,6 +14,12 @@ const (
 	HeaderSize = SequenceSize + TimestampSize
 )
 
+//│         HEADER           │
+//┌────────────┬─────────────┬──────────────────────┐
+//│ Sequence   │ Timestamp   │ Audio Data           │
+//│ 4 bytes    │ 8 bytes     │ N bytes              │
+//└────────────┴─────────────┴──────────────────────┘
+
 type Packet v1.Packet
 
 func (p *Packet) Debug() {
