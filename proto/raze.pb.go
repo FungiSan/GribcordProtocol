@@ -117,6 +117,66 @@ func (x *ConnectResponse) GetSessionId() string {
 	return ""
 }
 
+type Packet struct {
+	state         protoimpl.MessageState `protogen:"open.v1"`
+	Sequence      uint32                 `protobuf:"varint,1,opt,name=sequence,proto3" json:"sequence,omitempty"`
+	Data          []byte                 `protobuf:"bytes,2,opt,name=data,proto3" json:"data,omitempty"`
+	Timestamp     int64                  `protobuf:"varint,3,opt,name=timestamp,proto3" json:"timestamp,omitempty"`
+	unknownFields protoimpl.UnknownFields
+	sizeCache     protoimpl.SizeCache
+}
+
+func (x *Packet) Reset() {
+	*x = Packet{}
+	mi := &file_proto_raze_proto_msgTypes[2]
+	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
+	ms.StoreMessageInfo(mi)
+}
+
+func (x *Packet) String() string {
+	return protoimpl.X.MessageStringOf(x)
+}
+
+func (*Packet) ProtoMessage() {}
+
+func (x *Packet) ProtoReflect() protoreflect.Message {
+	mi := &file_proto_raze_proto_msgTypes[2]
+	if x != nil {
+		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
+		if ms.LoadMessageInfo() == nil {
+			ms.StoreMessageInfo(mi)
+		}
+		return ms
+	}
+	return mi.MessageOf(x)
+}
+
+// Deprecated: Use Packet.ProtoReflect.Descriptor instead.
+func (*Packet) Descriptor() ([]byte, []int) {
+	return file_proto_raze_proto_rawDescGZIP(), []int{2}
+}
+
+func (x *Packet) GetSequence() uint32 {
+	if x != nil {
+		return x.Sequence
+	}
+	return 0
+}
+
+func (x *Packet) GetData() []byte {
+	if x != nil {
+		return x.Data
+	}
+	return nil
+}
+
+func (x *Packet) GetTimestamp() int64 {
+	if x != nil {
+		return x.Timestamp
+	}
+	return 0
+}
+
 var File_proto_raze_proto protoreflect.FileDescriptor
 
 const file_proto_raze_proto_rawDesc = "" +
@@ -128,7 +188,11 @@ const file_proto_raze_proto_rawDesc = "" +
 	"\x0eclient_version\x18\x02 \x01(\rR\rclientVersion\"0\n" +
 	"\x0fConnectResponse\x12\x1d\n" +
 	"\n" +
-	"session_id\x18\x01 \x01(\tR\tsessionId2K\n" +
+	"session_id\x18\x01 \x01(\tR\tsessionId\"V\n" +
+	"\x06Packet\x12\x1a\n" +
+	"\bsequence\x18\x01 \x01(\rR\bsequence\x12\x12\n" +
+	"\x04data\x18\x02 \x01(\fR\x04data\x12\x1c\n" +
+	"\ttimestamp\x18\x03 \x01(\x03R\ttimestamp2K\n" +
 	"\vRazeService\x12<\n" +
 	"\aConnect\x12\x17.raze.v1.ConnectRequest\x1a\x18.raze.v1.ConnectResponseB1Z/github.com/Su-pr007/RazeProtocol/gen/go/raze/v1b\x06proto3"
 
@@ -144,10 +208,11 @@ func file_proto_raze_proto_rawDescGZIP() []byte {
 	return file_proto_raze_proto_rawDescData
 }
 
-var file_proto_raze_proto_msgTypes = make([]protoimpl.MessageInfo, 2)
+var file_proto_raze_proto_msgTypes = make([]protoimpl.MessageInfo, 3)
 var file_proto_raze_proto_goTypes = []any{
 	(*ConnectRequest)(nil),  // 0: raze.v1.ConnectRequest
 	(*ConnectResponse)(nil), // 1: raze.v1.ConnectResponse
+	(*Packet)(nil),          // 2: raze.v1.Packet
 }
 var file_proto_raze_proto_depIdxs = []int32{
 	0, // 0: raze.v1.RazeService.Connect:input_type -> raze.v1.ConnectRequest
@@ -170,7 +235,7 @@ func file_proto_raze_proto_init() {
 			GoPackagePath: reflect.TypeOf(x{}).PkgPath(),
 			RawDescriptor: unsafe.Slice(unsafe.StringData(file_proto_raze_proto_rawDesc), len(file_proto_raze_proto_rawDesc)),
 			NumEnums:      0,
-			NumMessages:   2,
+			NumMessages:   3,
 			NumExtensions: 0,
 			NumServices:   1,
 		},

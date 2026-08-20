@@ -16,3 +16,9 @@ message ConnectRequest {
 message ConnectResponse {
   string session_id = 1;
 }
+
+message Packet {
+  uint32 sequence = 1;
+  bytes data = 2;
+  int64 timestamp = 3;
+}
