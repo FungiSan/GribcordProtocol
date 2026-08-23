@@ -8,17 +8,10 @@ import (
 )
 
 const (
-	SequenceSize  = 4
-	TimestampSize = 8
+	SequenceSize = 4
 
-	HeaderSize = SequenceSize + TimestampSize
+	HeaderSize = SequenceSize
 )
-
-//│         HEADER           │
-//┌────────────┬─────────────┬──────────────────────┐
-//│ Sequence   │ Timestamp   │ Audio Data           │
-//│ 4 bytes    │ 8 bytes     │ N bytes              │
-//└────────────┴─────────────┴──────────────────────┘
 
 type Packet v1.Packet
 
@@ -26,7 +19,6 @@ func (p *Packet) Debug() {
 	fmt.Printf(
 		"[DEBUG] Packet: sequence=%d timestamp=%v\n",
 		p.Sequence,
-		p.Timestamp,
 	)
 }
 
@@ -36,11 +28,6 @@ func Encode(packet *Packet) []byte {
 	binary.LittleEndian.PutUint32(
 		buffer[0:SequenceSize],
 		packet.Sequence,
-	)
-
-	binary.LittleEndian.PutUint64(
-		buffer[SequenceSize:SequenceSize+TimestampSize],
-		uint64(packet.Timestamp),
 	)
 
 	copy(buffer[HeaderSize:], packet.Data)
@@ -54,9 +41,8 @@ func Decode(buffer []byte) (*Packet, error) {
 	}
 
 	packet := &Packet{
-		Sequence:  binary.LittleEndian.Uint32(buffer[0:SequenceSize]),
-		Timestamp: int64(binary.LittleEndian.Uint64(buffer[SequenceSize : SequenceSize+TimestampSize])),
-		Data:      make([]byte, len(buffer)-HeaderSize),
+		Sequence: binary.LittleEndian.Uint32(buffer[0:SequenceSize]),
+		Data:     make([]byte, len(buffer)-HeaderSize),
 	}
 
 	copy(packet.Data, buffer[HeaderSize:])

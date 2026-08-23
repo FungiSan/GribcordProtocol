@@ -121,7 +121,6 @@ type Packet struct {
 	state         protoimpl.MessageState `protogen:"open.v1"`
 	Sequence      uint32                 `protobuf:"varint,1,opt,name=sequence,proto3" json:"sequence,omitempty"`
 	Data          []byte                 `protobuf:"bytes,2,opt,name=data,proto3" json:"data,omitempty"`
-	Timestamp     int64                  `protobuf:"varint,3,opt,name=timestamp,proto3" json:"timestamp,omitempty"`
 	unknownFields protoimpl.UnknownFields
 	sizeCache     protoimpl.SizeCache
 }
@@ -170,13 +169,6 @@ func (x *Packet) GetData() []byte {
 	return nil
 }
 
-func (x *Packet) GetTimestamp() int64 {
-	if x != nil {
-		return x.Timestamp
-	}
-	return 0
-}
-
 var File_proto_raze_proto protoreflect.FileDescriptor
 
 const file_proto_raze_proto_rawDesc = "" +
@@ -188,11 +180,10 @@ const file_proto_raze_proto_rawDesc = "" +
 	"\x0eclient_version\x18\x02 \x01(\rR\rclientVersion\"0\n" +
 	"\x0fConnectResponse\x12\x1d\n" +
 	"\n" +
-	"session_id\x18\x01 \x01(\tR\tsessionId\"V\n" +
+	"session_id\x18\x01 \x01(\tR\tsessionId\"8\n" +
 	"\x06Packet\x12\x1a\n" +
 	"\bsequence\x18\x01 \x01(\rR\bsequence\x12\x12\n" +
-	"\x04data\x18\x02 \x01(\fR\x04data\x12\x1c\n" +
-	"\ttimestamp\x18\x03 \x01(\x03R\ttimestamp2K\n" +
+	"\x04data\x18\x02 \x01(\fR\x04data2K\n" +
 	"\vRazeService\x12<\n" +
 	"\aConnect\x12\x17.raze.v1.ConnectRequest\x1a\x18.raze.v1.ConnectResponseB1Z/github.com/Su-pr007/RazeProtocol/gen/go/raze/v1b\x06proto3"
 
