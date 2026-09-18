@@ -1,10 +1,10 @@
 syntax = "proto3";
 
-package raze.v1;
+package gribcord.v1;
 
-option go_package = "github.com/Su-pr007/RazeProtocol/gen/go/raze/v1";
+option go_package = "GribcordProtocol/gen/go/gribcord/v1";
 
-service RazeService {
+service GribcordService {
   rpc Connect(ConnectRequest) returns (ConnectResponse);
 }
 

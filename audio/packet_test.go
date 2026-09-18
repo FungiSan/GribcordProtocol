@@ -11,7 +11,7 @@ func TestPacketEncodeDecode(t *testing.T) {
 		Data:     []byte{1, 2, 3, 4, 5},
 	}
 
-	encoded := Encode(original)
+	encoded := Encode(&original)
 
 	t.Logf("Encoded: % x", encoded)
 

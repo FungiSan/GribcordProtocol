@@ -1,4 +1,4 @@
-module github.com/Su-pr007/RazeProtocol
+module GribcordProtocol
 
 go 1.26.2
 

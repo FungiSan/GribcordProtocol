@@ -4,7 +4,7 @@ import (
 	"encoding/binary"
 	"fmt"
 
-	v1 "github.com/Su-pr007/RazeProtocol/proto"
+	v1 "GribcordProtocol/proto"
 )
 
 const (
