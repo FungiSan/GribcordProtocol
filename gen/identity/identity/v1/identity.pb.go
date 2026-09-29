@@ -294,12 +294,8 @@ func (x *LoginFailureResp) GetMessage() string {
 }
 
 type LoginResp struct {
-	state protoimpl.MessageState `protogen:"open.v1"`
-	// Types that are valid to be assigned to Response:
-	//
-	//	*LoginResp_Ok
-	//	*LoginResp_Error
-	Response      isLoginResp_Response `protobuf_oneof:"response"`
+	state         protoimpl.MessageState `protogen:"open.v1"`
+	Token         string                 `protobuf:"bytes,1,opt,name=token,proto3" json:"token,omitempty"`
 	unknownFields protoimpl.UnknownFields
 	sizeCache     protoimpl.SizeCache
 }
@@ -334,53 +330,17 @@ func (*LoginResp) Descriptor() ([]byte, []int) {
 	return file_identity_proto_rawDescGZIP(), []int{6}
 }
 
-func (x *LoginResp) GetResponse() isLoginResp_Response {
+func (x *LoginResp) GetToken() string {
 	if x != nil {
-		return x.Response
+		return x.Token
 	}
-	return nil
+	return ""
 }
-
-func (x *LoginResp) GetOk() *LoginSuccessResp {
-	if x != nil {
-		if x, ok := x.Response.(*LoginResp_Ok); ok {
-			return x.Ok
-		}
-	}
-	return nil
-}
-
-func (x *LoginResp) GetError() *ErrorDetails {
-	if x != nil {
-		if x, ok := x.Response.(*LoginResp_Error); ok {
-			return x.Error
-		}
-	}
-	return nil
-}
-
-type isLoginResp_Response interface {
-	isLoginResp_Response()
-}
-
-type LoginResp_Ok struct {
-	Ok *LoginSuccessResp `protobuf:"bytes,1,opt,name=ok,proto3,oneof"`
-}
-
-type LoginResp_Error struct {
-	Error *ErrorDetails `protobuf:"bytes,2,opt,name=error,proto3,oneof"`
-}
-
-func (*LoginResp_Ok) isLoginResp_Response() {}
-
-func (*LoginResp_Error) isLoginResp_Response() {}
 
 type RegisterReq struct {
-	state protoimpl.MessageState `protogen:"open.v1"`
-	// Types that are valid to be assigned to Method:
-	//
-	//	*RegisterReq_Credentials
-	Method        isRegisterReq_Method `protobuf_oneof:"method"`
+	state         protoimpl.MessageState `protogen:"open.v1"`
+	Username      string                 `protobuf:"bytes,1,opt,name=username,proto3" json:"username,omitempty"`
+	Password      string                 `protobuf:"bytes,2,opt,name=password,proto3" json:"password,omitempty"`
 	unknownFields protoimpl.UnknownFields
 	sizeCache     protoimpl.SizeCache
 }
@@ -415,78 +375,14 @@ func (*RegisterReq) Descriptor() ([]byte, []int) {
 	return file_identity_proto_rawDescGZIP(), []int{7}
 }
 
-func (x *RegisterReq) GetMethod() isRegisterReq_Method {
-	if x != nil {
-		return x.Method
-	}
-	return nil
-}
-
-func (x *RegisterReq) GetCredentials() *PasswordRegisterReq {
-	if x != nil {
-		if x, ok := x.Method.(*RegisterReq_Credentials); ok {
-			return x.Credentials
-		}
-	}
-	return nil
-}
-
-type isRegisterReq_Method interface {
-	isRegisterReq_Method()
-}
-
-type RegisterReq_Credentials struct {
-	Credentials *PasswordRegisterReq `protobuf:"bytes,1,opt,name=credentials,proto3,oneof"`
-}
-
-func (*RegisterReq_Credentials) isRegisterReq_Method() {}
-
-type PasswordRegisterReq struct {
-	state         protoimpl.MessageState `protogen:"open.v1"`
-	Username      string                 `protobuf:"bytes,1,opt,name=username,proto3" json:"username,omitempty"`
-	Password      string                 `protobuf:"bytes,2,opt,name=password,proto3" json:"password,omitempty"`
-	unknownFields protoimpl.UnknownFields
-	sizeCache     protoimpl.SizeCache
-}
-
-func (x *PasswordRegisterReq) Reset() {
-	*x = PasswordRegisterReq{}
-	mi := &file_identity_proto_msgTypes[8]
-	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
-	ms.StoreMessageInfo(mi)
-}
-
-func (x *PasswordRegisterReq) String() string {
-	return protoimpl.X.MessageStringOf(x)
-}
-
-func (*PasswordRegisterReq) ProtoMessage() {}
-
-func (x *PasswordRegisterReq) ProtoReflect() protoreflect.Message {
-	mi := &file_identity_proto_msgTypes[8]
-	if x != nil {
-		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
-		if ms.LoadMessageInfo() == nil {
-			ms.StoreMessageInfo(mi)
-		}
-		return ms
-	}
-	return mi.MessageOf(x)
-}
-
-// Deprecated: Use PasswordRegisterReq.ProtoReflect.Descriptor instead.
-func (*PasswordRegisterReq) Descriptor() ([]byte, []int) {
-	return file_identity_proto_rawDescGZIP(), []int{8}
-}
-
-func (x *PasswordRegisterReq) GetUsername() string {
+func (x *RegisterReq) GetUsername() string {
 	if x != nil {
 		return x.Username
 	}
 	return ""
 }
 
-func (x *PasswordRegisterReq) GetPassword() string {
+func (x *RegisterReq) GetPassword() string {
 	if x != nil {
 		return x.Password
 	}
@@ -494,19 +390,15 @@ func (x *PasswordRegisterReq) GetPassword() string {
 }
 
 type RegisterResp struct {
-	state protoimpl.MessageState `protogen:"open.v1"`
-	// Types that are valid to be assigned to Response:
-	//
-	//	*RegisterResp_Ok
-	//	*RegisterResp_Error
-	Response      isRegisterResp_Response `protobuf_oneof:"response"`
+	state         protoimpl.MessageState `protogen:"open.v1"`
+	Token         string                 `protobuf:"bytes,1,opt,name=token,proto3" json:"token,omitempty"`
 	unknownFields protoimpl.UnknownFields
 	sizeCache     protoimpl.SizeCache
 }
 
 func (x *RegisterResp) Reset() {
 	*x = RegisterResp{}
-	mi := &file_identity_proto_msgTypes[9]
+	mi := &file_identity_proto_msgTypes[8]
 	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 	ms.StoreMessageInfo(mi)
 }
@@ -518,7 +410,7 @@ func (x *RegisterResp) String() string {
 func (*RegisterResp) ProtoMessage() {}
 
 func (x *RegisterResp) ProtoReflect() protoreflect.Message {
-	mi := &file_identity_proto_msgTypes[9]
+	mi := &file_identity_proto_msgTypes[8]
 	if x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		if ms.LoadMessageInfo() == nil {
@@ -531,88 +423,10 @@ func (x *RegisterResp) ProtoReflect() protoreflect.Message {
 
 // Deprecated: Use RegisterResp.ProtoReflect.Descriptor instead.
 func (*RegisterResp) Descriptor() ([]byte, []int) {
-	return file_identity_proto_rawDescGZIP(), []int{9}
+	return file_identity_proto_rawDescGZIP(), []int{8}
 }
 
-func (x *RegisterResp) GetResponse() isRegisterResp_Response {
-	if x != nil {
-		return x.Response
-	}
-	return nil
-}
-
-func (x *RegisterResp) GetOk() *RegisterSuccessResp {
-	if x != nil {
-		if x, ok := x.Response.(*RegisterResp_Ok); ok {
-			return x.Ok
-		}
-	}
-	return nil
-}
-
-func (x *RegisterResp) GetError() *ErrorDetails {
-	if x != nil {
-		if x, ok := x.Response.(*RegisterResp_Error); ok {
-			return x.Error
-		}
-	}
-	return nil
-}
-
-type isRegisterResp_Response interface {
-	isRegisterResp_Response()
-}
-
-type RegisterResp_Ok struct {
-	Ok *RegisterSuccessResp `protobuf:"bytes,1,opt,name=ok,proto3,oneof"`
-}
-
-type RegisterResp_Error struct {
-	Error *ErrorDetails `protobuf:"bytes,2,opt,name=error,proto3,oneof"`
-}
-
-func (*RegisterResp_Ok) isRegisterResp_Response() {}
-
-func (*RegisterResp_Error) isRegisterResp_Response() {}
-
-type RegisterSuccessResp struct {
-	state         protoimpl.MessageState `protogen:"open.v1"`
-	Token         string                 `protobuf:"bytes,1,opt,name=token,proto3" json:"token,omitempty"`
-	unknownFields protoimpl.UnknownFields
-	sizeCache     protoimpl.SizeCache
-}
-
-func (x *RegisterSuccessResp) Reset() {
-	*x = RegisterSuccessResp{}
-	mi := &file_identity_proto_msgTypes[10]
-	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
-	ms.StoreMessageInfo(mi)
-}
-
-func (x *RegisterSuccessResp) String() string {
-	return protoimpl.X.MessageStringOf(x)
-}
-
-func (*RegisterSuccessResp) ProtoMessage() {}
-
-func (x *RegisterSuccessResp) ProtoReflect() protoreflect.Message {
-	mi := &file_identity_proto_msgTypes[10]
-	if x != nil {
-		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
-		if ms.LoadMessageInfo() == nil {
-			ms.StoreMessageInfo(mi)
-		}
-		return ms
-	}
-	return mi.MessageOf(x)
-}
-
-// Deprecated: Use RegisterSuccessResp.ProtoReflect.Descriptor instead.
-func (*RegisterSuccessResp) Descriptor() ([]byte, []int) {
-	return file_identity_proto_rawDescGZIP(), []int{10}
-}
-
-func (x *RegisterSuccessResp) GetToken() string {
+func (x *RegisterResp) GetToken() string {
 	if x != nil {
 		return x.Token
 	}
@@ -628,7 +442,7 @@ type RefreshTokenReq struct {
 
 func (x *RefreshTokenReq) Reset() {
 	*x = RefreshTokenReq{}
-	mi := &file_identity_proto_msgTypes[11]
+	mi := &file_identity_proto_msgTypes[9]
 	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 	ms.StoreMessageInfo(mi)
 }
@@ -640,7 +454,7 @@ func (x *RefreshTokenReq) String() string {
 func (*RefreshTokenReq) ProtoMessage() {}
 
 func (x *RefreshTokenReq) ProtoReflect() protoreflect.Message {
-	mi := &file_identity_proto_msgTypes[11]
+	mi := &file_identity_proto_msgTypes[9]
 	if x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		if ms.LoadMessageInfo() == nil {
@@ -653,7 +467,7 @@ func (x *RefreshTokenReq) ProtoReflect() protoreflect.Message {
 
 // Deprecated: Use RefreshTokenReq.ProtoReflect.Descriptor instead.
 func (*RefreshTokenReq) Descriptor() ([]byte, []int) {
-	return file_identity_proto_rawDescGZIP(), []int{11}
+	return file_identity_proto_rawDescGZIP(), []int{9}
 }
 
 func (x *RefreshTokenReq) GetToken() string {
@@ -673,7 +487,7 @@ type RefreshTokenResp struct {
 
 func (x *RefreshTokenResp) Reset() {
 	*x = RefreshTokenResp{}
-	mi := &file_identity_proto_msgTypes[12]
+	mi := &file_identity_proto_msgTypes[10]
 	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 	ms.StoreMessageInfo(mi)
 }
@@ -685,7 +499,7 @@ func (x *RefreshTokenResp) String() string {
 func (*RefreshTokenResp) ProtoMessage() {}
 
 func (x *RefreshTokenResp) ProtoReflect() protoreflect.Message {
-	mi := &file_identity_proto_msgTypes[12]
+	mi := &file_identity_proto_msgTypes[10]
 	if x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		if ms.LoadMessageInfo() == nil {
@@ -698,7 +512,7 @@ func (x *RefreshTokenResp) ProtoReflect() protoreflect.Message {
 
 // Deprecated: Use RefreshTokenResp.ProtoReflect.Descriptor instead.
 func (*RefreshTokenResp) Descriptor() ([]byte, []int) {
-	return file_identity_proto_rawDescGZIP(), []int{12}
+	return file_identity_proto_rawDescGZIP(), []int{10}
 }
 
 func (x *RefreshTokenResp) GetAccessToken() string {
@@ -732,24 +546,13 @@ const file_identity_proto_rawDesc = "" +
 	"\x10LoginSuccessResp\x12\x14\n" +
 	"\x05token\x18\x01 \x01(\tR\x05token\",\n" +
 	"\x10LoginFailureResp\x12\x18\n" +
-	"\amessage\x18\x01 \x01(\tR\amessage\"u\n" +
-	"\tLoginResp\x12,\n" +
-	"\x02ok\x18\x01 \x01(\v2\x1a.identity.LoginSuccessRespH\x00R\x02ok\x12.\n" +
-	"\x05error\x18\x02 \x01(\v2\x16.identity.ErrorDetailsH\x00R\x05errorB\n" +
-	"\n" +
-	"\bresponse\"Z\n" +
-	"\vRegisterReq\x12A\n" +
-	"\vcredentials\x18\x01 \x01(\v2\x1d.identity.PasswordRegisterReqH\x00R\vcredentialsB\b\n" +
-	"\x06method\"M\n" +
-	"\x13PasswordRegisterReq\x12\x1a\n" +
+	"\amessage\x18\x01 \x01(\tR\amessage\"!\n" +
+	"\tLoginResp\x12\x14\n" +
+	"\x05token\x18\x01 \x01(\tR\x05token\"E\n" +
+	"\vRegisterReq\x12\x1a\n" +
 	"\busername\x18\x01 \x01(\tR\busername\x12\x1a\n" +
-	"\bpassword\x18\x02 \x01(\tR\bpassword\"{\n" +
-	"\fRegisterResp\x12/\n" +
-	"\x02ok\x18\x01 \x01(\v2\x1d.identity.RegisterSuccessRespH\x00R\x02ok\x12.\n" +
-	"\x05error\x18\x02 \x01(\v2\x16.identity.ErrorDetailsH\x00R\x05errorB\n" +
-	"\n" +
-	"\bresponse\"+\n" +
-	"\x13RegisterSuccessResp\x12\x14\n" +
+	"\bpassword\x18\x02 \x01(\tR\bpassword\"$\n" +
+	"\fRegisterResp\x12\x14\n" +
 	"\x05token\x18\x01 \x01(\tR\x05token\"'\n" +
 	"\x0fRefreshTokenReq\x12\x14\n" +
 	"\x05token\x18\x01 \x01(\tR\x05token\"Z\n" +
@@ -774,41 +577,34 @@ func file_identity_proto_rawDescGZIP() []byte {
 	return file_identity_proto_rawDescData
 }
 
-var file_identity_proto_msgTypes = make([]protoimpl.MessageInfo, 13)
+var file_identity_proto_msgTypes = make([]protoimpl.MessageInfo, 11)
 var file_identity_proto_goTypes = []any{
-	(*ErrorDetails)(nil),        // 0: identity.ErrorDetails
-	(*PingReq)(nil),             // 1: identity.PingReq
-	(*PingResp)(nil),            // 2: identity.PingResp
-	(*LoginReq)(nil),            // 3: identity.LoginReq
-	(*LoginSuccessResp)(nil),    // 4: identity.LoginSuccessResp
-	(*LoginFailureResp)(nil),    // 5: identity.LoginFailureResp
-	(*LoginResp)(nil),           // 6: identity.LoginResp
-	(*RegisterReq)(nil),         // 7: identity.RegisterReq
-	(*PasswordRegisterReq)(nil), // 8: identity.PasswordRegisterReq
-	(*RegisterResp)(nil),        // 9: identity.RegisterResp
-	(*RegisterSuccessResp)(nil), // 10: identity.RegisterSuccessResp
-	(*RefreshTokenReq)(nil),     // 11: identity.RefreshTokenReq
-	(*RefreshTokenResp)(nil),    // 12: identity.RefreshTokenResp
+	(*ErrorDetails)(nil),     // 0: identity.ErrorDetails
+	(*PingReq)(nil),          // 1: identity.PingReq
+	(*PingResp)(nil),         // 2: identity.PingResp
+	(*LoginReq)(nil),         // 3: identity.LoginReq
+	(*LoginSuccessResp)(nil), // 4: identity.LoginSuccessResp
+	(*LoginFailureResp)(nil), // 5: identity.LoginFailureResp
+	(*LoginResp)(nil),        // 6: identity.LoginResp
+	(*RegisterReq)(nil),      // 7: identity.RegisterReq
+	(*RegisterResp)(nil),     // 8: identity.RegisterResp
+	(*RefreshTokenReq)(nil),  // 9: identity.RefreshTokenReq
+	(*RefreshTokenResp)(nil), // 10: identity.RefreshTokenResp
 }
 var file_identity_proto_depIdxs = []int32{
-	4,  // 0: identity.LoginResp.ok:type_name -> identity.LoginSuccessResp
-	0,  // 1: identity.LoginResp.error:type_name -> identity.ErrorDetails
-	8,  // 2: identity.RegisterReq.credentials:type_name -> identity.PasswordRegisterReq
-	10, // 3: identity.RegisterResp.ok:type_name -> identity.RegisterSuccessResp
-	0,  // 4: identity.RegisterResp.error:type_name -> identity.ErrorDetails
-	1,  // 5: identity.Identity.GetPing:input_type -> identity.PingReq
-	7,  // 6: identity.Identity.Register:input_type -> identity.RegisterReq
-	3,  // 7: identity.Identity.Login:input_type -> identity.LoginReq
-	11, // 8: identity.Identity.RefreshToken:input_type -> identity.RefreshTokenReq
-	2,  // 9: identity.Identity.GetPing:output_type -> identity.PingResp
-	9,  // 10: identity.Identity.Register:output_type -> identity.RegisterResp
-	6,  // 11: identity.Identity.Login:output_type -> identity.LoginResp
-	12, // 12: identity.Identity.RefreshToken:output_type -> identity.RefreshTokenResp
-	9,  // [9:13] is the sub-list for method output_type
-	5,  // [5:9] is the sub-list for method input_type
-	5,  // [5:5] is the sub-list for extension type_name
-	5,  // [5:5] is the sub-list for extension extendee
-	0,  // [0:5] is the sub-list for field type_name
+	1,  // 0: identity.Identity.GetPing:input_type -> identity.PingReq
+	7,  // 1: identity.Identity.Register:input_type -> identity.RegisterReq
+	3,  // 2: identity.Identity.Login:input_type -> identity.LoginReq
+	9,  // 3: identity.Identity.RefreshToken:input_type -> identity.RefreshTokenReq
+	2,  // 4: identity.Identity.GetPing:output_type -> identity.PingResp
+	8,  // 5: identity.Identity.Register:output_type -> identity.RegisterResp
+	6,  // 6: identity.Identity.Login:output_type -> identity.LoginResp
+	10, // 7: identity.Identity.RefreshToken:output_type -> identity.RefreshTokenResp
+	4,  // [4:8] is the sub-list for method output_type
+	0,  // [0:4] is the sub-list for method input_type
+	0,  // [0:0] is the sub-list for extension type_name
+	0,  // [0:0] is the sub-list for extension extendee
+	0,  // [0:0] is the sub-list for field type_name
 }
 
 func init() { file_identity_proto_init() }
@@ -816,24 +612,13 @@ func file_identity_proto_init() {
 	if File_identity_proto != nil {
 		return
 	}
-	file_identity_proto_msgTypes[6].OneofWrappers = []any{
-		(*LoginResp_Ok)(nil),
-		(*LoginResp_Error)(nil),
-	}
-	file_identity_proto_msgTypes[7].OneofWrappers = []any{
-		(*RegisterReq_Credentials)(nil),
-	}
-	file_identity_proto_msgTypes[9].OneofWrappers = []any{
-		(*RegisterResp_Ok)(nil),
-		(*RegisterResp_Error)(nil),
-	}
 	type x struct{}
 	out := protoimpl.TypeBuilder{
 		File: protoimpl.DescBuilder{
 			GoPackagePath: reflect.TypeOf(x{}).PkgPath(),
 			RawDescriptor: unsafe.Slice(unsafe.StringData(file_identity_proto_rawDesc), len(file_identity_proto_rawDesc)),
 			NumEnums:      0,
-			NumMessages:   13,
+			NumMessages:   11,
 			NumExtensions: 0,
 			NumServices:   1,
 		},
