@@ -27,7 +27,8 @@ message LoginResp {
 
 message RegisterReq {
   string username = 1;
-  string password = 2;
+  string email = 2;
+  string password = 3;
 }
 
 message RegisterResp {
