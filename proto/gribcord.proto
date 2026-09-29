@@ -1,8 +1,8 @@
 syntax = "proto3";
 
-package gribcord.v1;
+package gribcord;
 
-option go_package = "GribcordProtocol/gen/go/gribcord/v1";
+option go_package = "gribcord/v1";
 
 service GribcordService {
   rpc Connect(ConnectRequest) returns (ConnectResponse);

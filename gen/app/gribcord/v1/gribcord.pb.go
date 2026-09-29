@@ -2,7 +2,7 @@
 // versions:
 // 	protoc-gen-go v1.36.12
 // 	protoc        v7.36.1
-// source: proto/gribcord.proto
+// source: gribcord.proto
 
 package v1
 
@@ -31,7 +31,7 @@ type ConnectRequest struct {
 
 func (x *ConnectRequest) Reset() {
 	*x = ConnectRequest{}
-	mi := &file_proto_gribcord_proto_msgTypes[0]
+	mi := &file_gribcord_proto_msgTypes[0]
 	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 	ms.StoreMessageInfo(mi)
 }
@@ -43,7 +43,7 @@ func (x *ConnectRequest) String() string {
 func (*ConnectRequest) ProtoMessage() {}
 
 func (x *ConnectRequest) ProtoReflect() protoreflect.Message {
-	mi := &file_proto_gribcord_proto_msgTypes[0]
+	mi := &file_gribcord_proto_msgTypes[0]
 	if x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		if ms.LoadMessageInfo() == nil {
@@ -56,7 +56,7 @@ func (x *ConnectRequest) ProtoReflect() protoreflect.Message {
 
 // Deprecated: Use ConnectRequest.ProtoReflect.Descriptor instead.
 func (*ConnectRequest) Descriptor() ([]byte, []int) {
-	return file_proto_gribcord_proto_rawDescGZIP(), []int{0}
+	return file_gribcord_proto_rawDescGZIP(), []int{0}
 }
 
 func (x *ConnectRequest) GetClientName() string {
@@ -82,7 +82,7 @@ type ConnectResponse struct {
 
 func (x *ConnectResponse) Reset() {
 	*x = ConnectResponse{}
-	mi := &file_proto_gribcord_proto_msgTypes[1]
+	mi := &file_gribcord_proto_msgTypes[1]
 	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 	ms.StoreMessageInfo(mi)
 }
@@ -94,7 +94,7 @@ func (x *ConnectResponse) String() string {
 func (*ConnectResponse) ProtoMessage() {}
 
 func (x *ConnectResponse) ProtoReflect() protoreflect.Message {
-	mi := &file_proto_gribcord_proto_msgTypes[1]
+	mi := &file_gribcord_proto_msgTypes[1]
 	if x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		if ms.LoadMessageInfo() == nil {
@@ -107,7 +107,7 @@ func (x *ConnectResponse) ProtoReflect() protoreflect.Message {
 
 // Deprecated: Use ConnectResponse.ProtoReflect.Descriptor instead.
 func (*ConnectResponse) Descriptor() ([]byte, []int) {
-	return file_proto_gribcord_proto_rawDescGZIP(), []int{1}
+	return file_gribcord_proto_rawDescGZIP(), []int{1}
 }
 
 func (x *ConnectResponse) GetSessionId() string {
@@ -127,7 +127,7 @@ type Packet struct {
 
 func (x *Packet) Reset() {
 	*x = Packet{}
-	mi := &file_proto_gribcord_proto_msgTypes[2]
+	mi := &file_gribcord_proto_msgTypes[2]
 	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 	ms.StoreMessageInfo(mi)
 }
@@ -139,7 +139,7 @@ func (x *Packet) String() string {
 func (*Packet) ProtoMessage() {}
 
 func (x *Packet) ProtoReflect() protoreflect.Message {
-	mi := &file_proto_gribcord_proto_msgTypes[2]
+	mi := &file_gribcord_proto_msgTypes[2]
 	if x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		if ms.LoadMessageInfo() == nil {
@@ -152,7 +152,7 @@ func (x *Packet) ProtoReflect() protoreflect.Message {
 
 // Deprecated: Use Packet.ProtoReflect.Descriptor instead.
 func (*Packet) Descriptor() ([]byte, []int) {
-	return file_proto_gribcord_proto_rawDescGZIP(), []int{2}
+	return file_gribcord_proto_rawDescGZIP(), []int{2}
 }
 
 func (x *Packet) GetSequence() uint32 {
@@ -169,11 +169,11 @@ func (x *Packet) GetData() []byte {
 	return nil
 }
 
-var File_proto_gribcord_proto protoreflect.FileDescriptor
+var File_gribcord_proto protoreflect.FileDescriptor
 
-const file_proto_gribcord_proto_rawDesc = "" +
+const file_gribcord_proto_rawDesc = "" +
 	"\n" +
-	"\x14proto/gribcord.proto\x12\vgribcord.v1\"X\n" +
+	"\x0egribcord.proto\x12\bgribcord\"X\n" +
 	"\x0eConnectRequest\x12\x1f\n" +
 	"\vclient_name\x18\x01 \x01(\tR\n" +
 	"clientName\x12%\n" +
@@ -183,31 +183,31 @@ const file_proto_gribcord_proto_rawDesc = "" +
 	"session_id\x18\x01 \x01(\tR\tsessionId\"8\n" +
 	"\x06Packet\x12\x1a\n" +
 	"\bsequence\x18\x01 \x01(\rR\bsequence\x12\x12\n" +
-	"\x04data\x18\x02 \x01(\fR\x04data2W\n" +
-	"\x0fGribcordService\x12D\n" +
-	"\aConnect\x12\x1b.gribcord.v1.ConnectRequest\x1a\x1c.gribcord.v1.ConnectResponseB%Z#GribcordProtocol/gen/go/gribcord/v1b\x06proto3"
+	"\x04data\x18\x02 \x01(\fR\x04data2Q\n" +
+	"\x0fGribcordService\x12>\n" +
+	"\aConnect\x12\x18.gribcord.ConnectRequest\x1a\x19.gribcord.ConnectResponseB\rZ\vgribcord/v1b\x06proto3"
 
 var (
-	file_proto_gribcord_proto_rawDescOnce sync.Once
-	file_proto_gribcord_proto_rawDescData []byte
+	file_gribcord_proto_rawDescOnce sync.Once
+	file_gribcord_proto_rawDescData []byte
 )
 
-func file_proto_gribcord_proto_rawDescGZIP() []byte {
-	file_proto_gribcord_proto_rawDescOnce.Do(func() {
-		file_proto_gribcord_proto_rawDescData = protoimpl.X.CompressGZIP(unsafe.Slice(unsafe.StringData(file_proto_gribcord_proto_rawDesc), len(file_proto_gribcord_proto_rawDesc)))
+func file_gribcord_proto_rawDescGZIP() []byte {
+	file_gribcord_proto_rawDescOnce.Do(func() {
+		file_gribcord_proto_rawDescData = protoimpl.X.CompressGZIP(unsafe.Slice(unsafe.StringData(file_gribcord_proto_rawDesc), len(file_gribcord_proto_rawDesc)))
 	})
-	return file_proto_gribcord_proto_rawDescData
+	return file_gribcord_proto_rawDescData
 }
 
-var file_proto_gribcord_proto_msgTypes = make([]protoimpl.MessageInfo, 3)
-var file_proto_gribcord_proto_goTypes = []any{
-	(*ConnectRequest)(nil),  // 0: gribcord.v1.ConnectRequest
-	(*ConnectResponse)(nil), // 1: gribcord.v1.ConnectResponse
-	(*Packet)(nil),          // 2: gribcord.v1.Packet
+var file_gribcord_proto_msgTypes = make([]protoimpl.MessageInfo, 3)
+var file_gribcord_proto_goTypes = []any{
+	(*ConnectRequest)(nil),  // 0: gribcord.ConnectRequest
+	(*ConnectResponse)(nil), // 1: gribcord.ConnectResponse
+	(*Packet)(nil),          // 2: gribcord.Packet
 }
-var file_proto_gribcord_proto_depIdxs = []int32{
-	0, // 0: gribcord.v1.GribcordService.Connect:input_type -> gribcord.v1.ConnectRequest
-	1, // 1: gribcord.v1.GribcordService.Connect:output_type -> gribcord.v1.ConnectResponse
+var file_gribcord_proto_depIdxs = []int32{
+	0, // 0: gribcord.GribcordService.Connect:input_type -> gribcord.ConnectRequest
+	1, // 1: gribcord.GribcordService.Connect:output_type -> gribcord.ConnectResponse
 	1, // [1:2] is the sub-list for method output_type
 	0, // [0:1] is the sub-list for method input_type
 	0, // [0:0] is the sub-list for extension type_name
@@ -215,26 +215,26 @@ var file_proto_gribcord_proto_depIdxs = []int32{
 	0, // [0:0] is the sub-list for field type_name
 }
 
-func init() { file_proto_gribcord_proto_init() }
-func file_proto_gribcord_proto_init() {
-	if File_proto_gribcord_proto != nil {
+func init() { file_gribcord_proto_init() }
+func file_gribcord_proto_init() {
+	if File_gribcord_proto != nil {
 		return
 	}
 	type x struct{}
 	out := protoimpl.TypeBuilder{
 		File: protoimpl.DescBuilder{
 			GoPackagePath: reflect.TypeOf(x{}).PkgPath(),
-			RawDescriptor: unsafe.Slice(unsafe.StringData(file_proto_gribcord_proto_rawDesc), len(file_proto_gribcord_proto_rawDesc)),
+			RawDescriptor: unsafe.Slice(unsafe.StringData(file_gribcord_proto_rawDesc), len(file_gribcord_proto_rawDesc)),
 			NumEnums:      0,
 			NumMessages:   3,
 			NumExtensions: 0,
 			NumServices:   1,
 		},
-		GoTypes:           file_proto_gribcord_proto_goTypes,
-		DependencyIndexes: file_proto_gribcord_proto_depIdxs,
-		MessageInfos:      file_proto_gribcord_proto_msgTypes,
+		GoTypes:           file_gribcord_proto_goTypes,
+		DependencyIndexes: file_gribcord_proto_depIdxs,
+		MessageInfos:      file_gribcord_proto_msgTypes,
 	}.Build()
-	File_proto_gribcord_proto = out.File
-	file_proto_gribcord_proto_goTypes = nil
-	file_proto_gribcord_proto_depIdxs = nil
+	File_gribcord_proto = out.File
+	file_gribcord_proto_goTypes = nil
+	file_gribcord_proto_depIdxs = nil
 }

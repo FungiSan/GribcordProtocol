@@ -1,0 +1,84 @@
+syntax = "proto3";
+
+package identity;
+
+option go_package = "identity/v1";
+
+message ErrorDetails {
+  string code = 1;
+  string message = 2;
+}
+
+message PingReq {
+}
+
+message PingResp {
+  string message = 1;
+}
+
+message PasswordLoginReq {
+  string username = 1;
+  string password = 2;
+}
+
+message LoginReq {
+  oneof method {
+    PasswordLoginReq credentials = 1;
+  }
+}
+
+message LoginSuccessResp {
+  string token = 1;
+}
+
+message LoginFailureResp {
+  string message = 1;
+}
+
+message LoginResp {
+  oneof response {
+    LoginSuccessResp ok = 1;
+    ErrorDetails error = 2;
+  }
+}
+
+message RegisterReq {
+  oneof method {
+    PasswordRegisterReq credentials = 1;
+  }
+}
+
+message PasswordRegisterReq {
+  string username = 1;
+  string password = 2;
+}
+
+message RegisterResp {
+  oneof response {
+    RegisterSuccessResp ok = 1;
+    ErrorDetails error = 2;
+  }
+}
+
+message RegisterSuccessResp {
+  string token = 1;
+}
+
+message RefreshTokenReq {
+  string token = 1;
+}
+
+message RefreshTokenResp {
+  string access_token = 1;
+  string refresh_token = 2;
+}
+
+service Identity {
+  rpc GetPing(PingReq) returns (PingResp);
+
+  rpc Register(RegisterReq) returns (RegisterResp);
+
+  rpc Login(LoginReq) returns (LoginResp);
+
+  rpc RefreshToken(RefreshTokenReq) returns (RefreshTokenResp);
+}

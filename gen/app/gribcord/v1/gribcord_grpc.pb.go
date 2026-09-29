@@ -2,7 +2,7 @@
 // versions:
 // - protoc-gen-go-grpc v1.6.2
 // - protoc             v7.36.1
-// source: proto/gribcord.proto
+// source: gribcord.proto
 
 package v1
 
@@ -19,7 +19,7 @@ import (
 const _ = grpc.SupportPackageIsVersion9
 
 const (
-	GribcordService_Connect_FullMethodName = "/gribcord.v1.GribcordService/Connect"
+	GribcordService_Connect_FullMethodName = "/gribcord.GribcordService/Connect"
 )
 
 // GribcordServiceClient is the client API for GribcordService service.
@@ -108,7 +108,7 @@ func _GribcordService_Connect_Handler(srv interface{}, ctx context.Context, dec 
 // It's only intended for direct use with grpc.RegisterService,
 // and not to be introspected or modified (even as a copy)
 var GribcordService_ServiceDesc = grpc.ServiceDesc{
-	ServiceName: "gribcord.v1.GribcordService",
+	ServiceName: "gribcord.GribcordService",
 	HandlerType: (*GribcordServiceServer)(nil),
 	Methods: []grpc.MethodDesc{
 		{
@@ -117,5 +117,5 @@ var GribcordService_ServiceDesc = grpc.ServiceDesc{
 		},
 	},
 	Streams:  []grpc.StreamDesc{},
-	Metadata: "proto/gribcord.proto",
+	Metadata: "gribcord.proto",
 }
