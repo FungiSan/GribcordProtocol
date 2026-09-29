@@ -21,14 +21,6 @@ message LoginReq {
   string password = 2;
 }
 
-message LoginSuccessResp {
-  string token = 1;
-}
-
-message LoginFailureResp {
-  string message = 1;
-}
-
 message LoginResp {
   string token = 1;
 }
