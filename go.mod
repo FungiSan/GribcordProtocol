@@ -1,4 +1,4 @@
-module GribcordProtocol
+module github.com/FungiSan/GribcordProtocol
 
 go 1.26.2
 
