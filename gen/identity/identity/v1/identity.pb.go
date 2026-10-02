@@ -311,7 +311,7 @@ func (x *RegisterReq) GetPassword() string {
 
 type RegisterResp struct {
 	state         protoimpl.MessageState `protogen:"open.v1"`
-	Token         string                 `protobuf:"bytes,1,opt,name=token,proto3" json:"token,omitempty"`
+	Uid           int64                  `protobuf:"varint,1,opt,name=uid,proto3" json:"uid,omitempty"`
 	unknownFields protoimpl.UnknownFields
 	sizeCache     protoimpl.SizeCache
 }
@@ -346,11 +346,11 @@ func (*RegisterResp) Descriptor() ([]byte, []int) {
 	return file_identity_proto_rawDescGZIP(), []int{6}
 }
 
-func (x *RegisterResp) GetToken() string {
+func (x *RegisterResp) GetUid() int64 {
 	if x != nil {
-		return x.Token
+		return x.Uid
 	}
-	return ""
+	return 0
 }
 
 type RefreshTokenReq struct {
@@ -468,9 +468,9 @@ const file_identity_proto_rawDesc = "" +
 	"\vRegisterReq\x12\x1a\n" +
 	"\busername\x18\x01 \x01(\tR\busername\x12\x14\n" +
 	"\x05email\x18\x02 \x01(\tR\x05email\x12\x1a\n" +
-	"\bpassword\x18\x03 \x01(\tR\bpassword\"$\n" +
-	"\fRegisterResp\x12\x14\n" +
-	"\x05token\x18\x01 \x01(\tR\x05token\"'\n" +
+	"\bpassword\x18\x03 \x01(\tR\bpassword\" \n" +
+	"\fRegisterResp\x12\x10\n" +
+	"\x03uid\x18\x01 \x01(\x03R\x03uid\"'\n" +
 	"\x0fRefreshTokenReq\x12\x14\n" +
 	"\x05token\x18\x01 \x01(\tR\x05token\"Z\n" +
 	"\x10RefreshTokenResp\x12!\n" +
