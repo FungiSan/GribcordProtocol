@@ -44,6 +44,14 @@ message RefreshTokenResp {
   string refresh_token = 2;
 }
 
+message IsAdminReq {
+  int64 user_id = 1;
+}
+
+message IsAdminResp {
+  bool is_admin = 1;
+}
+
 service Identity {
   rpc GetPing(PingReq) returns (PingResp);
 
@@ -52,4 +60,6 @@ service Identity {
   rpc Login(LoginReq) returns (LoginResp);
 
   rpc RefreshToken(RefreshTokenReq) returns (RefreshTokenResp);
+
+  rpc IsAdmin(IsAdminReq) returns (IsAdminResp);
 }

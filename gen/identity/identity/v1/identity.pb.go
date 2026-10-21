@@ -449,6 +449,94 @@ func (x *RefreshTokenResp) GetRefreshToken() string {
 	return ""
 }
 
+type IsAdminReq struct {
+	state         protoimpl.MessageState `protogen:"open.v1"`
+	UserId        int64                  `protobuf:"varint,1,opt,name=user_id,json=userId,proto3" json:"user_id,omitempty"`
+	unknownFields protoimpl.UnknownFields
+	sizeCache     protoimpl.SizeCache
+}
+
+func (x *IsAdminReq) Reset() {
+	*x = IsAdminReq{}
+	mi := &file_identity_proto_msgTypes[9]
+	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
+	ms.StoreMessageInfo(mi)
+}
+
+func (x *IsAdminReq) String() string {
+	return protoimpl.X.MessageStringOf(x)
+}
+
+func (*IsAdminReq) ProtoMessage() {}
+
+func (x *IsAdminReq) ProtoReflect() protoreflect.Message {
+	mi := &file_identity_proto_msgTypes[9]
+	if x != nil {
+		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
+		if ms.LoadMessageInfo() == nil {
+			ms.StoreMessageInfo(mi)
+		}
+		return ms
+	}
+	return mi.MessageOf(x)
+}
+
+// Deprecated: Use IsAdminReq.ProtoReflect.Descriptor instead.
+func (*IsAdminReq) Descriptor() ([]byte, []int) {
+	return file_identity_proto_rawDescGZIP(), []int{9}
+}
+
+func (x *IsAdminReq) GetUserId() int64 {
+	if x != nil {
+		return x.UserId
+	}
+	return 0
+}
+
+type IsAdminResp struct {
+	state         protoimpl.MessageState `protogen:"open.v1"`
+	IsAdmin       bool                   `protobuf:"varint,1,opt,name=is_admin,json=isAdmin,proto3" json:"is_admin,omitempty"`
+	unknownFields protoimpl.UnknownFields
+	sizeCache     protoimpl.SizeCache
+}
+
+func (x *IsAdminResp) Reset() {
+	*x = IsAdminResp{}
+	mi := &file_identity_proto_msgTypes[10]
+	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
+	ms.StoreMessageInfo(mi)
+}
+
+func (x *IsAdminResp) String() string {
+	return protoimpl.X.MessageStringOf(x)
+}
+
+func (*IsAdminResp) ProtoMessage() {}
+
+func (x *IsAdminResp) ProtoReflect() protoreflect.Message {
+	mi := &file_identity_proto_msgTypes[10]
+	if x != nil {
+		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
+		if ms.LoadMessageInfo() == nil {
+			ms.StoreMessageInfo(mi)
+		}
+		return ms
+	}
+	return mi.MessageOf(x)
+}
+
+// Deprecated: Use IsAdminResp.ProtoReflect.Descriptor instead.
+func (*IsAdminResp) Descriptor() ([]byte, []int) {
+	return file_identity_proto_rawDescGZIP(), []int{10}
+}
+
+func (x *IsAdminResp) GetIsAdmin() bool {
+	if x != nil {
+		return x.IsAdmin
+	}
+	return false
+}
+
 var File_identity_proto protoreflect.FileDescriptor
 
 const file_identity_proto_rawDesc = "" +
@@ -475,12 +563,18 @@ const file_identity_proto_rawDesc = "" +
 	"\x05token\x18\x01 \x01(\tR\x05token\"Z\n" +
 	"\x10RefreshTokenResp\x12!\n" +
 	"\faccess_token\x18\x01 \x01(\tR\vaccessToken\x12#\n" +
-	"\rrefresh_token\x18\x02 \x01(\tR\frefreshToken2\xf0\x01\n" +
+	"\rrefresh_token\x18\x02 \x01(\tR\frefreshToken\"%\n" +
+	"\n" +
+	"IsAdminReq\x12\x17\n" +
+	"\auser_id\x18\x01 \x01(\x03R\x06userId\"(\n" +
+	"\vIsAdminResp\x12\x19\n" +
+	"\bis_admin\x18\x01 \x01(\bR\aisAdmin2\xa8\x02\n" +
 	"\bIdentity\x120\n" +
 	"\aGetPing\x12\x11.identity.PingReq\x1a\x12.identity.PingResp\x129\n" +
 	"\bRegister\x12\x15.identity.RegisterReq\x1a\x16.identity.RegisterResp\x120\n" +
 	"\x05Login\x12\x12.identity.LoginReq\x1a\x13.identity.LoginResp\x12E\n" +
-	"\fRefreshToken\x12\x19.identity.RefreshTokenReq\x1a\x1a.identity.RefreshTokenRespB\rZ\videntity/v1b\x06proto3"
+	"\fRefreshToken\x12\x19.identity.RefreshTokenReq\x1a\x1a.identity.RefreshTokenResp\x126\n" +
+	"\aIsAdmin\x12\x14.identity.IsAdminReq\x1a\x15.identity.IsAdminRespB\rZ\videntity/v1b\x06proto3"
 
 var (
 	file_identity_proto_rawDescOnce sync.Once
@@ -494,7 +588,7 @@ func file_identity_proto_rawDescGZIP() []byte {
 	return file_identity_proto_rawDescData
 }
 
-var file_identity_proto_msgTypes = make([]protoimpl.MessageInfo, 9)
+var file_identity_proto_msgTypes = make([]protoimpl.MessageInfo, 11)
 var file_identity_proto_goTypes = []any{
 	(*ErrorDetails)(nil),     // 0: identity.ErrorDetails
 	(*PingReq)(nil),          // 1: identity.PingReq
@@ -505,21 +599,25 @@ var file_identity_proto_goTypes = []any{
 	(*RegisterResp)(nil),     // 6: identity.RegisterResp
 	(*RefreshTokenReq)(nil),  // 7: identity.RefreshTokenReq
 	(*RefreshTokenResp)(nil), // 8: identity.RefreshTokenResp
+	(*IsAdminReq)(nil),       // 9: identity.IsAdminReq
+	(*IsAdminResp)(nil),      // 10: identity.IsAdminResp
 }
 var file_identity_proto_depIdxs = []int32{
-	1, // 0: identity.Identity.GetPing:input_type -> identity.PingReq
-	5, // 1: identity.Identity.Register:input_type -> identity.RegisterReq
-	3, // 2: identity.Identity.Login:input_type -> identity.LoginReq
-	7, // 3: identity.Identity.RefreshToken:input_type -> identity.RefreshTokenReq
-	2, // 4: identity.Identity.GetPing:output_type -> identity.PingResp
-	6, // 5: identity.Identity.Register:output_type -> identity.RegisterResp
-	4, // 6: identity.Identity.Login:output_type -> identity.LoginResp
-	8, // 7: identity.Identity.RefreshToken:output_type -> identity.RefreshTokenResp
-	4, // [4:8] is the sub-list for method output_type
-	0, // [0:4] is the sub-list for method input_type
-	0, // [0:0] is the sub-list for extension type_name
-	0, // [0:0] is the sub-list for extension extendee
-	0, // [0:0] is the sub-list for field type_name
+	1,  // 0: identity.Identity.GetPing:input_type -> identity.PingReq
+	5,  // 1: identity.Identity.Register:input_type -> identity.RegisterReq
+	3,  // 2: identity.Identity.Login:input_type -> identity.LoginReq
+	7,  // 3: identity.Identity.RefreshToken:input_type -> identity.RefreshTokenReq
+	9,  // 4: identity.Identity.IsAdmin:input_type -> identity.IsAdminReq
+	2,  // 5: identity.Identity.GetPing:output_type -> identity.PingResp
+	6,  // 6: identity.Identity.Register:output_type -> identity.RegisterResp
+	4,  // 7: identity.Identity.Login:output_type -> identity.LoginResp
+	8,  // 8: identity.Identity.RefreshToken:output_type -> identity.RefreshTokenResp
+	10, // 9: identity.Identity.IsAdmin:output_type -> identity.IsAdminResp
+	5,  // [5:10] is the sub-list for method output_type
+	0,  // [0:5] is the sub-list for method input_type
+	0,  // [0:0] is the sub-list for extension type_name
+	0,  // [0:0] is the sub-list for extension extendee
+	0,  // [0:0] is the sub-list for field type_name
 }
 
 func init() { file_identity_proto_init() }
@@ -533,7 +631,7 @@ func file_identity_proto_init() {
 			GoPackagePath: reflect.TypeOf(x{}).PkgPath(),
 			RawDescriptor: unsafe.Slice(unsafe.StringData(file_identity_proto_rawDesc), len(file_identity_proto_rawDesc)),
 			NumEnums:      0,
-			NumMessages:   9,
+			NumMessages:   11,
 			NumExtensions: 0,
 			NumServices:   1,
 		},

@@ -23,6 +23,7 @@ const (
 	Identity_Register_FullMethodName     = "/identity.Identity/Register"
 	Identity_Login_FullMethodName        = "/identity.Identity/Login"
 	Identity_RefreshToken_FullMethodName = "/identity.Identity/RefreshToken"
+	Identity_IsAdmin_FullMethodName      = "/identity.Identity/IsAdmin"
 )
 
 // IdentityClient is the client API for Identity service.
@@ -33,6 +34,7 @@ type IdentityClient interface {
 	Register(ctx context.Context, in *RegisterReq, opts ...grpc.CallOption) (*RegisterResp, error)
 	Login(ctx context.Context, in *LoginReq, opts ...grpc.CallOption) (*LoginResp, error)
 	RefreshToken(ctx context.Context, in *RefreshTokenReq, opts ...grpc.CallOption) (*RefreshTokenResp, error)
+	IsAdmin(ctx context.Context, in *IsAdminReq, opts ...grpc.CallOption) (*IsAdminResp, error)
 }
 
 type identityClient struct {
@@ -83,6 +85,16 @@ func (c *identityClient) RefreshToken(ctx context.Context, in *RefreshTokenReq, 
 	return out, nil
 }
 
+func (c *identityClient) IsAdmin(ctx context.Context, in *IsAdminReq, opts ...grpc.CallOption) (*IsAdminResp, error) {
+	cOpts := append([]grpc.CallOption{grpc.StaticMethod()}, opts...)
+	out := new(IsAdminResp)
+	err := c.cc.Invoke(ctx, Identity_IsAdmin_FullMethodName, in, out, cOpts...)
+	if err != nil {
+		return nil, err
+	}
+	return out, nil
+}
+
 // IdentityServer is the server API for Identity service.
 // All implementations must embed UnimplementedIdentityServer
 // for forward compatibility.
@@ -91,6 +103,7 @@ type IdentityServer interface {
 	Register(context.Context, *RegisterReq) (*RegisterResp, error)
 	Login(context.Context, *LoginReq) (*LoginResp, error)
 	RefreshToken(context.Context, *RefreshTokenReq) (*RefreshTokenResp, error)
+	IsAdmin(context.Context, *IsAdminReq) (*IsAdminResp, error)
 	mustEmbedUnimplementedIdentityServer()
 }
 
@@ -112,6 +125,9 @@ func (UnimplementedIdentityServer) Login(context.Context, *LoginReq) (*LoginResp
 }
 func (UnimplementedIdentityServer) RefreshToken(context.Context, *RefreshTokenReq) (*RefreshTokenResp, error) {
 	return nil, status.Error(codes.Unimplemented, "method RefreshToken not implemented")
+}
+func (UnimplementedIdentityServer) IsAdmin(context.Context, *IsAdminReq) (*IsAdminResp, error) {
+	return nil, status.Error(codes.Unimplemented, "method IsAdmin not implemented")
 }
 func (UnimplementedIdentityServer) mustEmbedUnimplementedIdentityServer() {}
 func (UnimplementedIdentityServer) testEmbeddedByValue()                  {}
@@ -206,6 +222,24 @@ func _Identity_RefreshToken_Handler(srv interface{}, ctx context.Context, dec fu
 	return interceptor(ctx, in, info, handler)
 }
 
+func _Identity_IsAdmin_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
+	in := new(IsAdminReq)
+	if err := dec(in); err != nil {
+		return nil, err
+	}
+	if interceptor == nil {
+		return srv.(IdentityServer).IsAdmin(ctx, in)
+	}
+	info := &grpc.UnaryServerInfo{
+		Server:     srv,
+		FullMethod: Identity_IsAdmin_FullMethodName,
+	}
+	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
+		return srv.(IdentityServer).IsAdmin(ctx, req.(*IsAdminReq))
+	}
+	return interceptor(ctx, in, info, handler)
+}
+
 // Identity_ServiceDesc is the grpc.ServiceDesc for Identity service.
 // It's only intended for direct use with grpc.RegisterService,
 // and not to be introspected or modified (even as a copy)
@@ -228,6 +262,10 @@ var Identity_ServiceDesc = grpc.ServiceDesc{
 		{
 			MethodName: "RefreshToken",
 			Handler:    _Identity_RefreshToken_Handler,
+		},
+		{
+			MethodName: "IsAdmin",
+			Handler:    _Identity_IsAdmin_Handler,
 		},
 	},
 	Streams:  []grpc.StreamDesc{},
